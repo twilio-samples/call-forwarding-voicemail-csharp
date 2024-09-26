@@ -1,8 +1,5 @@
 using Twilio.TwiML;
 using Twilio.AspNet.Core;
-using Twilio.TwiML.Messaging;
-using Twilio.TwiML.Voice;
-using Microsoft.IdentityModel.Tokens;
 using Twilio.AspNet.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Numerics;
@@ -60,6 +57,7 @@ app.MapPost("/voice/mail", ([FromForm] VoiceRequest request)
     response.Record(
         timeout: 10
     );
+
 return Results.Extensions.TwiML(response);
 })
 .DisableAntiforgery();

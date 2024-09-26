@@ -9,11 +9,14 @@
 
 ## About
 
-This app shows how to build a [basic IVR (Interactive voice response)](https://www.twilio.com/en-us/use-cases/ivr) system with C# and Twilio.
+This app shows how to build a call forwarding system with voicemail using C# and Twilio.
 
-The user will be offered a menu to select from. 
+How it works:
 
-Use this application as a starting point to build your own basic IVR phone tree using C# and Webhooks.
+- Call is placed to your Twilio number
+- Your app checks the time
+- If the time is within the defined window, it will forward the call to another phone number
+- If it is not in the defined time window, it will record a voicemail
 
 
 ## Set up
@@ -50,23 +53,25 @@ dotnet add package Twilio.AspNet.Core
 
 ```
 
-3. Build to install the dependencies
+3. Tweak phone number and time variables.
+
+Necessary settings are located in the appsettings.json file in this project. Go into appsettings.json and fill in the phone number you want to forward your calls to under `PhoneNumber`. You can also change `DayStart` and `DayEnd` variables. Times are in UTC in this demo.
+
+
+4. Build to install the dependencies
 
 ```bash
 dotnet build
 ```
 
-3. Tweak phone number and time variables.
 
-Necessary settings are located in the appsettings.json file in this project. Go into appsettings.json and fill in the phone number you want to forward your calls to under `PhoneNumber`. You can also change `DayStart` and `DayEnd` variables. Times are in UTC in this demo.
-
-4. Run the application
+5. Run the application
 
 ```bash
 dotnet run
 ```
 
-5. Use ngrok or other tunneling service to expose your application to the internet
+6. Use ngrok or other tunneling service to expose your application to the internet
 
 You will need to use ngrok or another tunneling service to allow Twilio to reach your running application. Use the following command, replacing the port number that's shown here with the port that your application is running on.
 
@@ -74,7 +79,7 @@ You will need to use ngrok or another tunneling service to allow Twilio to reach
 ngrock http http://localhost:5183
 ```
 
-5. Set your ngrok endpoint as a Webhook in the Twilio console. Remember to append /voice to the ngrok URL.
+7. Set your ngrok endpoint as a Webhook in the Twilio console. Remember to append /voice to the ngrok URL.
 
 That's it!
 
@@ -87,7 +92,6 @@ That's it!
 
 This template is open source and welcomes contributions. All contributions are subject to our [Code of Conduct](https://github.com/twilio-labs/.github/blob/master/CODE_OF_CONDUCT.md).
 
-[Visit the project on GitHub](https://github.com/twilio-labs/sample-template-dotnet)
 
 ## License
 
