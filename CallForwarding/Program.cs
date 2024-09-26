@@ -12,7 +12,7 @@ var app = builder.Build();
 
 var config = new ConfigurationBuilder()
     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-    .AddUserSecrets<Program>()
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .Build();
 
 
@@ -28,7 +28,6 @@ int.TryParse(endDay, out endTime);
 
 app.MapPost("/voice", () => 
 {
-
 
 	var now = DateTime.Now.TimeOfDay;
 	var start = new TimeSpan(startTime,0,0); 
@@ -67,4 +66,3 @@ return Results.Extensions.TwiML(response);
 
 
 app.Run();
-
